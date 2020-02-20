@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>
-			Urbania
+			Typical Arrangment
 		</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,14 +46,31 @@
 	<p id="demo"></p>
 	<script>
 	// Set the date we're counting down to
-	var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+	var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+	
 
 	// Update the count down every 1 second
 	var x = setInterval(function() {
-
 	  // Get today's date and time
 	  var now = new Date().getTime();
-
+	  int dateNum = now.getDate();
+	  int monthNum = now.getMonth();
+		if (now.getDay() < 4){
+			dateNum += 4 - now.getDay();
+		} else if(now.getDate() == 5) {
+			dateNum += 6;
+		}
+		 else if(now.getDate() == 6) {
+			dateNum += 5;
+		}
+		if(getDaysInMonth(now.getMonth(), now.getFullYear()) < dateNum){
+			dateNum = 0 + dateNum - getDaysInMonth(now.getMonth(), now.getFullYear())
+			monthNum++;
+		}
+		
+	string cDate = months[value[monthNum]] + " " + dateNum + ", " + now.getFullYear() + " 11:30:00";
+	var countDownDate = new Date(cDate).getTime();
 	  // Find the distance between now and the count down date
 	  var distance = countDownDate - now;
 
